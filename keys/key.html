@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate API Key</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      /*overflowX: auto;*/
+      border-radius: 5px;
+    }
+    h2 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .message {
+      margin-top: 20px;
+      text-align: center;
+      color: green;
+    }
+    .copy-button {
+      margin-top: 10px;
+      background-color: #28a745;
+    }
+    .copy-button:hover {
+      background-color: #218838;
+    }
+    .error {
+      color: red;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Generate Your API Key</h2>
+      <form id="key-gen-form">
+        <label for="key-name">Enter a Name for Your API Key:</label>
+        <input type="text" id="key-name" name="keyName" placeholder="e.g., My API Key" required>
+        <button type="submit">Generate API Key</button>
+      </form>
+      <div class="message" id="response-message"></div>
+      <button id="copy-key" class="copy-button" style="display: none;">Copy</button>
+      Note: If you don't want to generate your own key you can use this public key:
+      
+      test_gMC8cF59V2Suvo0P6DuUuJGRG33oECP4EtyR0diZvr1sgZkcod5m48bHzJyvliRR
+    </div>
+
+    <script>
+      document.getElementById('key-gen-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting the traditional way
+
+        const keyName = document.getElementById('key-name').value;
+
+        // Data to send to the server
+        const data = {
+          name: keyName
+        };
+        console.log(data.name);
+
+        // Clear the response message
+        document.getElementById('response-message').innerText = '';
+
+        // Make a POST request to your API to generate the key
+        fetch('https://resourceflwo.onrender.com/keys', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Check if the key was generated successfully
+          if (data.apiKey) {
+            const message = `
+            API Key Generated: <strong>${data.apiKey}</strong><br>
+            `;
+            document.getElementById('response-message').innerHTML = message;
+
+            // Show the copy button and attach the API key to it
+            document.getElementById('copy-key').style.display = 'block';
+            document.getElementById('copy-key').onclick = function() {
+              copyToClipboard(data.apiKey);
+            };
+          } else {
+            document.getElementById('response-message').innerText = 'Error generating API key. Please try again.';
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          document.getElementById('response-message').innerText = 'An error occurred while generating the API key.';
+        });
+      });
+
+      function copyToClipboard(key) {
+        const tempInput = document.createElement('input');
+        tempInput.value = key;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        alert('API key copied to clipboard!');
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+/* General Form Styling */
+header {
+  background-color: #3498db;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+#api-form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+#api-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+#api-form input, #api-form textarea, #api-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+#api-form button {
+  background-color: #18bc9c;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#api-form button:hover {
+  background-color: #16a085;
+}
+
+#output {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  white-space: pre-wrap;
+}
+
+#linkwar, #idwar, #typewar, #keywar {
+  color: red;
+}
+.res {
+  border-bottom: 1px solid #000;
+}

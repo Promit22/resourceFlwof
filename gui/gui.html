@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ResourceFlow API GUI</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+  <header>
+    <h1>ResourceFlow API - GUI</h1>
+    <p>
+      Interact with the ResourceFlow API using this simple interface.
+    </p>
+  </header>
+
+  <!-- API Interaction Form -->
+  <section id="api-gui">
+    <h2>API Interaction</h2>
+    <form id="api-form">
+      <!-- HTTP Method Selection -->
+      <label for="method">Choose HTTP Method:</label>
+      <select id="method" name="method" onchange="toggleFields()">
+        <option value="GET">GET</option>
+        <option value="POST">POST</option>
+        <option value="PUT">PUT(update)</option>
+      </select>
+      <div id="sharedBy-field">
+        <label for="sharedBy">Name:</label>
+        <input type="text" id="sharedBy" name="sharedBy" placeholder="Your desired name for your posting">
+      </div>
+      <!-- API Key Input -->
+      <div id="key-field">
+        <label for="api-key">API Key:</label>
+        <input type="text" id="api-key" name="api-key">
+        <p id="keywar">
+
+        </p>
+      </div>
+      <!-- ID Field (for GET, PUT, DELETE) -->
+      <div id="id-field">
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" placeholder="Only for GET/PUT">
+        <p id="idwar">
+
+        </p>
+      </div>
+
+      <!-- Type Field (for POST, PUT) -->
+      <div id="type-field">
+        <label for="type">Type:</label>
+        <input type="text" id="type" name="type" placeholder="e.g., Climate, Technology">
+        <p id="typewar">
+
+        </p>
+      </div>
+
+      <!-- Description Field (for POST, PUT) -->
+      <div id="description-field">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" placeholder="Provide a short description"></textarea>
+      </div>
+
+      <!-- Body Field (for POST, PUT) -->
+      <div id="link-field">
+        <label for="link">Link:</label>
+        <textarea id="link" name="link" placeholder='https://example.com'></textarea>
+        <p id="linkwar">
+
+        </p>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit">Submit</button>
+    </form>
+
+    <!-- Output/Warnings -->
+    <div id="output"></div>
+  </section>
+  <p>
+    <b>Note:</b> Do not share malicious link. If you do, it will be removed without any notice and you will be declared as excommunicado. As a result, you will have no other place to hide except the hotel continental(which doesn't exist irl) So, be careful!
+  </p>
+
+  <script src="./script.js"></script>
+
+</body>
+</html>
