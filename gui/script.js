@@ -123,6 +123,9 @@ document.getElementById('api-form').addEventListener('submit', function(event) {
     for (let i = 0; i < data.length; i++) {
       const div = document.createElement('div');
       div.classList.add('res');
+      const hfive = document.createElement('h5');
+      hfive.textContent = 'Id: ' + data[i]['id'];
+      div.appendChild(hfive);
       const h5 = document.createElement('h3');
       h5.textContent = 'Shared By: ' + data[i]['sharedBy'];
       div.appendChild(h5);
